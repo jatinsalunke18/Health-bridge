@@ -1,169 +1,258 @@
-# HealthBridge - NAMASTE + ICD EMR System
+# 🏥 HealthBridge  
+### NAMASTE + ICD-11 Electronic Medical Records (EMR) System
 
-A comprehensive Electronic Medical Records (EMR) system that bridges traditional AYUSH medicine (NAMASTE codes) with international standards (ICD-11), featuring FHIR R4 interoperability and modern web interface.
+![SIH](https://img.shields.io/badge/Built%20at-SIH-orange)
+![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
+![Flask](https://img.shields.io/badge/Flask-Web%20Framework-black)
+![FHIR](https://img.shields.io/badge/FHIR-R4-green)
+![Database](https://img.shields.io/badge/Database-SQLite-lightgrey)
+![License](https://img.shields.io/badge/License-MIT-brightgreen)
 
-## Features
+> **HealthBridge** is a next-generation Electronic Medical Records (EMR) system that **bridges traditional Indian AYUSH medicine (NAMASTE codes)** with **global healthcare standards (ICD-11 & FHIR R4)**, enabling true interoperability between ancient medical knowledge and modern clinical systems.
 
-### Core Functionality
-- **Multi-User Authentication**: Role-based access (Admin, Doctor, Patient) with Google OAuth2 support
-- **Patient Management**: Complete patient records with ABHA ID integration
-- **Medical Code Search**: Unified search across NAMASTE (AYUSH) and ICD-11 code systems
-- **Diagnosis Management**: Save and track patient diagnoses with code mapping
-- **FHIR R4 Compliance**: Full FHIR bundle upload, validation, and export capabilities
-- **Analytics & Reports**: Comprehensive reporting with PDF/Excel export
-- **Patient History**: Timeline view of medical records with FHIR export
+> 🚀 Developed by **Team `Name_Space`** during **Smart India Hackathon (SIH)** to bridge AYUSH and global healthcare standards.
 
-### Technical Features
-- **Modern UI**: Responsive design with futuristic dashboard themes
-- **API Integration**: WHO ICD-11 API integration for real-time code lookup
-- **Database Support**: SQLite databases for patient data, diagnoses, and FHIR bundles
-- **Security**: JWT authentication for API access, secure session management
-- **Interoperability**: FHIR R4 CodeSystem, ValueSet, and ConceptMap support
+---
 
-## Quick Start
+## 🌍 Project Motivation
 
-### 1. Install Dependencies
+Healthcare systems often operate in silos:
+
+- Traditional AYUSH practices lack global interoperability  
+- Modern EMRs ignore indigenous medical coding  
+- Patient-doctor relationships are poorly tracked  
+- Interoperability with national and international standards is limited  
+
+**HealthBridge solves this** by unifying:
+- 🇮🇳 **NAMASTE (AYUSH) codes**
+- 🌐 **ICD-11 (WHO standard)**
+- 🔁 **FHIR R4 interoperability**
+- 🆔 **ABHA ID integration**
+
+---
+
+## 🏆 Hackathon Details
+
+**Built during:** Smart India Hackathon (SIH)  
+**Team Name:** `Name_Space`  
+**Problem Statement:** Develop API code to integrate NAMASTE and/or ICD-11 TM2 into EMR systems (EHR STANDARDS- INDIA )
+
+**Problem Theme:** MedTech / BioTech / HealthTech
+
+**Development Type:** Hackathon Prototype (Scalable Architecture)
+
+HealthBridge was conceptualized and developed as part of the **Smart India Hackathon (SIH)**, focusing on solving real-world healthcare interoperability challenges by bridging **traditional AYUSH medical systems** with **global ICD-11 and FHIR R4 standards**.
+
+The project emphasizes:
+- Rapid yet scalable system design
+- Standards-compliant healthcare interoperability
+- Practical implementation for Indian healthcare infrastructure
+
+## ✨ Key Features
+
+### 🔐 Authentication & Access Control
+- Role-based access (**Doctor / Patient / Admin**)
+- Secure login & signup system
+- Google OAuth2 support *(optional)*
+- Flask-Login session handling
+- JWT authentication for APIs
+
+### 🆔 Unique Identification System
+- Auto-generated **Patient IDs** (`P0001`, `P0002`, …)
+- Auto-generated **Doctor IDs** (`D0001`, `D0002`, …)
+- **ABHA ID** validation & linking (India-specific)
+
+### 🧬 Medical Code Management
+- 🪔 **NAMASTE codes** (Ayurveda, Unani, Siddha, Homeopathy)
+- 🧾 **ICD-11 integration** (WHO)
+- 🔄 Bidirectional code translation
+- ⚡ Real-time medical code search
+- 📄 CSV fallback when APIs are unavailable
+
+### 👤 Patient Management
+- Complete demographic profiles
+- Longitudinal medical history
+- Diagnosis tracking with doctor attribution
+- Prescription management
+- Appointment scheduling
+- ABHA-linked patient profiles
+
+### 🩺 Doctor Portal
+- Professional dashboard with analytics
+- Patient diagnosis entry
+- Code search & translation
+- Doctor-patient relationship tracking
+- Reports & insights
+
+### 🧍 Patient Portal
+- Personal health dashboard
+- View diagnoses & prescriptions
+- Appointment management
+- Profile & ABHA ID linking
+- Transparency with doctor details
+
+### 🔁 FHIR R4 Interoperability
+- Full FHIR Bundle upload & validation
+- FHIR Resources:
+  - Patient
+  - Condition
+  - Observation
+- CodeSystem & ValueSet support
+- ConceptMap for NAMASTE ↔ ICD-11
+- FHIR export for external systems
+
+### 📊 Analytics & Reporting
+- Real-time statistics dashboards
+- PDF & Excel report exports
+- Interactive charts & visualizations
+- Pandas-powered data processing
+
+### 🎨 UI / UX Design
+- Futuristic **aqua-themed** interface
+- Glossy card-based layouts
+- Fully responsive (mobile-friendly)
+- Unified design for doctors & patients
+- Professional sidebar navigation
+
+---
+
+## 🖼 Screenshots
+
+> _Screenshots will be added here_
+- Doctor Dashboard  
+- Patient Portal  
+- Diagnosis Entry  
+- NAMASTE ↔ ICD-11 Search  
+- FHIR Upload  
+
+---
+
+## 🧰 Tech Stack
+
+| Layer | Technology |
+|-----|-----------|
+| Backend | Python, Flask |
+| Auth | Flask-Login, JWT |
+| Database | SQLite |
+| Frontend | HTML5, CSS3, JavaScript (ES6+) |
+| Interoperability | FHIR R4 |
+| APIs | WHO ICD-11 API |
+| Analytics | Pandas |
+| Security | Werkzeug password hashing |
+
+---
+
+## 🚀 Installation
+
+### 1️⃣ Clone the Repository
 ```bash
+git clone https://github.com/yourusername/HealthBridge.git
+cd HealthBridge
+```
+
+### 2️⃣ Create Virtual Environment
+```
+python -m venv venv
+source venv/bin/activate   # Windows: venv\Scripts\activate
+```
+
+### 3️⃣ Install Dependencies
+```
 pip install -r requirements.txt
 ```
 
-### 2. Run the Application
-```bash
+## ⚙️ Configuration
+Create a .env file in the root directory:
+```
+SECRET_KEY=your_secret_key
+JWT_SECRET_KEY=your_jwt_secret
+ICD11_CLIENT_ID=your_who_client_id
+ICD11_CLIENT_SECRET=your_who_client_secret
+FLASK_ENV=development
+```
+🔑 ICD-11 API Credentials:
+Get them from 👉 [https://icd.who.int/icdapi](https://icd.who.int/icdapi)
+
+## ▶️ Running the Application
+```
 python app.py
 ```
-Access the application at: http://localhost:8000
-
-### 3. Default Login
-- Create a new account via the signup page
-- All new accounts are created with Doctor role by default
-
-## Project Structure
-
-### Core Application Files
-- `app.py` - Main Flask application with API routes
-- `enhanced_routes.py` - Authentication and user management
-- `patient_routes.py` - Patient management functionality
-- `fhir_routes.py` - FHIR interoperability features
-- `reports_routes.py` - Analytics and reporting
-
-### Database Models
-- `enhanced_auth.py` - User authentication and roles
-- `patient_models.py` - Patient data management
-- `database.py` - Core database operations
-
-### Services
-- `csv_service.py` - NAMASTE codes management
-- `fhir_service.py` - FHIR resource creation
-- `icd11_api.py` - WHO ICD-11 API integration
-- `analytics_engine.py` - Data analytics and reporting
-- `abha_validator.py` - ABHA ID validation
-
-### Templates
-- `templates/enhanced_auth/` - Login, signup, and dashboards
-- `templates/patients/` - Patient management interfaces
-- `templates/fhir/` - FHIR bundle management
-- `templates/reports/` - Analytics dashboards
-- `templates/` - Core pages (search, diagnosis, history)
-
-## API Endpoints
-
-### Authentication
-- `POST /enhanced/login` - User login
-- `POST /enhanced/signup` - User registration
-- `GET /enhanced/logout` - User logout
-
-### Medical Code Search
-- `GET /search?q=<query>` - Unified NAMASTE + ICD-11 search
-- `GET /icd11/search?q=<query>` - ICD-11 only search
-- `GET /conceptmap/translate?code=<code>` - NAMASTE to ICD-11 translation
-
-### Patient Management
-- `GET /patients/` - Patient list interface
-- `POST /patients/add` - Add new patient
-- `GET /patients/<id>` - Patient details
-- `POST /patients/<id>/diagnosis` - Add diagnosis
-
-### FHIR Interoperability
-- `POST /fhir/upload` - Upload FHIR bundle
-- `GET /patients/<id>/fhir` - Get patient as FHIR resource
-- `GET /patient/<id>/history?format=fhir` - Patient history as FHIR bundle
-
-### Diagnosis & History
-- `POST /diagnosis` - Save patient diagnosis
-- `GET /patient/<id>/history` - Get patient medical history
-
-## Configuration
-
-### ICD-11 API Setup
-Update the WHO credentials in `app.py`:
-```python
-configure_icd_api(
-    client_id='your-client-id',
-    client_secret='your-client-secret'
-)
+Access the app at:
+```
+http://127.0.0.1:5000
 ```
 
-### Google OAuth2 Setup
-Update credentials in `enhanced_routes.py`:
-```python
-GOOGLE_CLIENT_ID = 'your-google-client-id'
-GOOGLE_CLIENT_SECRET = 'your-google-client-secret'
+## 🧭 Key Routes
+
+| Route                 | Description                      |
+| --------------------- | -------------------------------- |
+| `/enhanced/login`     | User login                       |
+| `/enhanced/signup`    | User registration                |
+| `/enhanced/dashboard` | Role-based dashboard             |
+| `/patients/`          | Patient management (Doctor only) |
+| `/diagnosis`          | Save diagnosis                   |
+| `/search`             | NAMASTE + ICD-11 search          |
+| `/translate_code`     | Code translation                 |
+| `/fhir/`              | FHIR interoperability            |
+| `/reports/`           | Analytics dashboard              |
+| `/patient/records`    | Patient medical records          |
+| `/patient/profile`    | Profile & ABHA ID                |
+
+## 🗄 Database Schema (Simplified)
 ```
+enhanced_auth.db
+```
+### Users
+- id
+- role
+- patient_id
+- doctor_id
+- email
+- password_hash
 
-## Database Files
-- `enhanced_auth.db` - User accounts and authentication
-- `patients.db` - Patient records and diagnoses
-- `fhir_bundles.db` - FHIR bundle storage
-- `diagnosis.db` - Legacy diagnosis records
-- `icd_cache.db` - ICD-11 API response cache
+### Core Tables
+- Diagnoses → doctor_id ↔ patient_id ↔ codes
+- Prescriptions → medications
+- Appointments → scheduling
+- Reports → analytics & documents
 
-## Key Features in Detail
+All tables use foreign key constraints.
 
-### 1. Medical Code Integration
-- **NAMASTE Codes**: Local CSV-based AYUSH medical codes
-- **ICD-11 Integration**: Real-time WHO API integration
-- **Code Translation**: Automated mapping between systems
-- **FHIR Compliance**: Standard-compliant CodeSystem and ValueSet resources
+## 🔒 Security Features
+- No hardcoded credentials
+- Environment-based secrets
+- Secure password hashing
+- Role-based access control
+- Input validation
+- ABHA ID formatting & validation
+- Database referential integrity
 
-### 2. Patient Management
-- **ABHA ID Support**: Indian healthcare ID validation and formatting
-- **Comprehensive Records**: Demographics, medical history, allergies
-- **Diagnosis Tracking**: Timeline-based diagnosis management
-- **FHIR Export**: Patient data as FHIR Patient resources
-
-### 3. FHIR R4 Interoperability
-- **Bundle Validation**: Comprehensive FHIR bundle structure validation
-- **Resource Creation**: Automatic FHIR resource generation
-- **Standard Compliance**: Full FHIR R4 specification adherence
-- **Export Capabilities**: JSON download of FHIR resources
-
-### 4. Analytics & Reporting
-- **Dashboard Analytics**: Real-time statistics and charts
-- **Export Options**: PDF and Excel report generation
-- **Data Visualization**: Interactive charts and graphs
-- **Pandas Integration**: Advanced data processing and analysis
-
-## Security Features
-- **Role-Based Access**: Admin, Doctor, Patient role separation
-- **Session Management**: Secure Flask-Login integration
-- **JWT Authentication**: API access token system
-- **Input Validation**: Comprehensive data validation and sanitization
-- **ABHA ID Validation**: Secure healthcare ID processing
-
-## Browser Compatibility
-- Modern browsers with ES6+ support
-- Responsive design for mobile and desktop
-- Progressive Web App features
-
-## Contributing
+## 🤝 Contributing
+Contributions are welcome!
 1. Fork the repository
 2. Create a feature branch
-3. Make your changes
-4. Test thoroughly
-5. Submit a pull request
+3. Commit changes with clear messages
+4. Open a Pull Request
 
-## License
-This project is developed for healthcare interoperability and AYUSH-modern medicine integration.
+Please follow clean code and documentation standards.
 
-## Support
-For technical support or feature requests, please refer to the project documentation or contact the development team.
+## 📄 License
+This project is licensed under the MIT License.
+See LICENSE file for details.
+
+## 🙏 Acknowledgments
+- **Smart India Hackathon (SIH)** – for providing the platform to solve national-scale problems
+- **Team `namespace`** – for collaborative design, development, and innovation
+- **WHO ICD-11 API** – for global disease classification standards
+- **FHIR R4 Community** – for interoperability guidelines
+- **AYUSH / NAMASTE Framework** – for traditional Indian medical coding
+- Open-source contributors and healthcare technologists
+
+## Contact & Support
+Maintainer: Aaditya Siddharth Bansod
+
+📧 Email: aadityasbansod@gmail.com
+
+🔗 LinkedIn: [https://linkedin.com/in/yourprofile](https://www.linkedin.com/in/aaditya-siddharth-bansod-889590333/)
+
+HealthBridge aims to modernize healthcare while respecting traditional medical systems.
