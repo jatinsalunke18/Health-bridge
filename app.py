@@ -8,16 +8,17 @@ from reports_routes import reports_bp
 from utils.namaste_service import get_namaste_service
 from database import Database
 from fhir_service import FHIRService
-from datetime import datetime
 from fhir_codesystem import FHIRCodeSystem
-from fhir_conceptmap import FHIRConceptMap, ConceptMapper
-from fhir_bundle import FHIRBundleValidator, FHIRBundleStorage, FHIROperationOutcome
-from jwt_auth import JWTAuth, jwt_required
+from fhir_conceptmap import ConceptMapper
+from jwt_auth import jwt_required
 from auth_service import AuthService
 from icd11_api import search_icd11, configure_icd_api
 import uuid
 import re
 import os
+import logging
+
+logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 app.static_folder = 'static'
@@ -58,7 +59,6 @@ namaste_service = get_namaste_service('namaste_codes.csv')
 db = Database()
 auth = AuthService()
 concept_mapper = ConceptMapper(namaste_service, search_icd11)
-bundle_storage = FHIRBundleStorage()
 
 # Configure ICD-11 API with your WHO credentials
 configure_icd_api(
