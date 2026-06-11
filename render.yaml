@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: healthbridge
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn app:app
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_DEBUG
+        value: "False"
+      - key: ICD11_CLIENT_ID
+        sync: false
+      - key: ICD11_CLIENT_SECRET
+        sync: false
+      - key: NAMASTE_API_KEY
+        sync: false
