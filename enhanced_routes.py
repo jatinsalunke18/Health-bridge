@@ -139,7 +139,10 @@ def google_login():
         return redirect(url_for('enhanced_auth.login'))
     
     # Simplified Google OAuth2 authorization URL (without state for now)
-    redirect_uri = request.host_url.rstrip('/') + '/enhanced/google-callback'
+    base_url = request.host_url.rstrip('/')
+    if request.headers.get('X-Forwarded-Proto') == 'https':
+        base_url = base_url.replace('http://', 'https://')
+    redirect_uri = base_url + '/enhanced/google-callback'
     google_auth_url = (
         f"https://accounts.google.com/o/oauth2/auth?"
         f"client_id={GOOGLE_CLIENT_ID}&"
@@ -164,7 +167,10 @@ def google_callback():
     
     try:
         # Exchange code for token
-        redirect_uri = request.host_url.rstrip('/') + '/enhanced/google-callback'
+        base_url = request.host_url.rstrip('/')
+        if request.headers.get('X-Forwarded-Proto') == 'https':
+            base_url = base_url.replace('http://', 'https://')
+        redirect_uri = base_url + '/enhanced/google-callback'
         token_data = {
             'client_id': GOOGLE_CLIENT_ID,
             'client_secret': GOOGLE_CLIENT_SECRET,
