@@ -3,6 +3,7 @@ from flask_login import login_user, logout_user, login_required, current_user
 from enhanced_auth import EnhancedAuthDB, UserRole
 import re
 import logging
+import os
 from datetime import datetime, timedelta
 import requests
 
@@ -16,8 +17,8 @@ enhanced_auth_bp = Blueprint('enhanced_auth', __name__, url_prefix='/enhanced')
 enhanced_db = EnhancedAuthDB()
 
 # Google OAuth2 Configuration
-GOOGLE_CLIENT_ID = '256342640444-05i74ku7k2gfpqma7u3mo0gb7jdql12j.apps.googleusercontent.com'
-GOOGLE_CLIENT_SECRET = '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'
+GOOGLE_CLIENT_ID = os.getenv('GOOGLE_CLIENT_ID', '')
+GOOGLE_CLIENT_SECRET = os.getenv('GOOGLE_CLIENT_SECRET', '')
 GOOGLE_DISCOVERY_URL = "https://accounts.google.com/.well-known/openid_configuration"
 
 @enhanced_auth_bp.route('/login', methods=['GET', 'POST'])
@@ -138,10 +139,11 @@ def google_login():
         return redirect(url_for('enhanced_auth.login'))
     
     # Simplified Google OAuth2 authorization URL (without state for now)
+    redirect_uri = request.host_url.rstrip('/') + '/enhanced/google-callback'
     google_auth_url = (
         f"https://accounts.google.com/o/oauth2/auth?"
         f"client_id={GOOGLE_CLIENT_ID}&"
-        f"redirect_uri=http://localhost:8000/enhanced/google-callback&"
+        f"redirect_uri={redirect_uri}&"
         f"scope=openid email profile&"
         f"response_type=code"
     )
@@ -162,12 +164,13 @@ def google_callback():
     
     try:
         # Exchange code for token
+        redirect_uri = request.host_url.rstrip('/') + '/enhanced/google-callback'
         token_data = {
             'client_id': GOOGLE_CLIENT_ID,
             'client_secret': GOOGLE_CLIENT_SECRET,
             'code': code,
             'grant_type': 'authorization_code',
-            'redirect_uri': "http://localhost:8000/enhanced/google-callback"
+            'redirect_uri': redirect_uri
         }
         
         token_response = requests.post('https://oauth2.googleapis.com/token', data=token_data)
