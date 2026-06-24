@@ -25,6 +25,9 @@ app.static_folder = 'static'
 app.template_folder = 'templates'
 app.secret_key = os.getenv('SECRET_KEY', 'your-secret-key-change-in-production')
 
+from werkzeug.middleware.proxy_fix import ProxyFix
+app.wsgi_app = ProxyFix(app.wsgi_app, x_proto=1, x_host=1)
+
 # Initialize Flask-Login
 login_manager = LoginManager()
 login_manager.init_app(app)
